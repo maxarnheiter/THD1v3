@@ -2,30 +2,27 @@
 using UnityEditor;
 using System.Collections.Generic;
 
-[InitializeOnLoad]
-public static class GameEditor 
+public class GameEditor
 {
 
-    static SceneInputHandler inputHandler;
-    static SceneRenderer sceneRenderer;
+    public EditorState editorState;
 
-    static InstanceManager instanceManager;
-    static PrefabManager prefabManager;
-    static SpriteManager spriteManager;
+    public SceneInputHandler inputHandler;
+    public SceneRenderer sceneRenderer;
 
-    static GameEditor()
+    public InstanceManager instanceManager;
+    public PrefabManager prefabManager;
+    public SpriteManager spriteManager;
+
+    public ResourceManager resourceManager;
+
+    public GameEditor()
     {
+        editorState = new EditorState();
+
         inputHandler = new SceneInputHandler();
         sceneRenderer = new SceneRenderer();
 
-        instanceManager = GameObject.FindObjectOfType<InstanceManager>();
-        prefabManager = GameObject.FindObjectOfType<PrefabManager>();
-        spriteManager = GameObject.FindObjectOfType<SpriteManager>();
+        resourceManager = new ResourceManager(this);
     }
-
-
-
-
-
-   
 }

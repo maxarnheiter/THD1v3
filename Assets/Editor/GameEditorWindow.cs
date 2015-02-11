@@ -6,6 +6,8 @@ using System.Linq;
 public class GameEditorWindow : EditorWindow 
 {
 
+    GameEditor gameEditor;
+
     EditorUI currentUI;
 
     QuickbarUI quickbarUI;
@@ -17,8 +19,6 @@ public class GameEditorWindow : EditorWindow
     float prefabsButtonWidth = 80f;
     float spritesButtonWidth = 80f;
 
-
-
     [MenuItem("THD/Game Editor")]
     static void Init()
     {
@@ -28,8 +28,11 @@ public class GameEditorWindow : EditorWindow
     void OnEnable()
     {
         title = "Game Editor";
+
+        gameEditor = GameEditorContainer.gameEditor;
+
         quickbarUI = new QuickbarUI();
-        resourcesUI = new ResourcesUI();
+        resourcesUI = new ResourcesUI(gameEditor);
         prefabsUI = new PrefabsUI();
         spritesUI = new SpritesUI();
 
@@ -56,19 +59,19 @@ public class GameEditorWindow : EditorWindow
 
             if (currentUI == resourcesUI)
                 GUI.enabled = false;
-            if (GUILayout.Button("Resources"))
+            if (GUILayout.Button("Resources", GUILayout.Width(resourcesButtonWidth)))
                 currentUI = resourcesUI;
             GUI.enabled = true;
 
             if (currentUI == spritesUI)
                 GUI.enabled = false;
-            if (GUILayout.Button("Sprites"))
+            if (GUILayout.Button("Sprites", GUILayout.Width(spritesButtonWidth)))
                 currentUI = spritesUI;
             GUI.enabled = true;
 
             if (currentUI == prefabsUI)
                 GUI.enabled = false;
-            if (GUILayout.Button("Prefabs"))
+            if (GUILayout.Button("Prefabs", GUILayout.Width(prefabsButtonWidth)))
                 currentUI = prefabsUI;
             GUI.enabled = true;
 

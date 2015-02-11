@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections.Generic;
 
-class SceneInputHandler
+public class SceneInputHandler
 {
     public SceneInputHandler()
     {

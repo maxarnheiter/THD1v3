@@ -3,8 +3,13 @@ using System.Collections.Generic;
 
 public class InstanceManager : MonoBehaviour 
 {
-
+    
     Dictionary<int, Instance> instances;
+
+    public InstanceManager()
+    {
+        instances = new Dictionary<int, Instance>();
+    }
 
     void Reset()
     {
@@ -16,10 +21,19 @@ public class InstanceManager : MonoBehaviour
     {
 
 	}
-	
 
 	void Update () 
     {
 	
 	}
+
+    public int Count
+    {
+        get
+        {
+            if (instances == null)
+                return 0;
+            return instances.Count;
+        }
+    }
 }

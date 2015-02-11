@@ -9,4 +9,14 @@ class PrefabsUI : EditorUI
     {
         GUILayout.Button("Prefabs");
     }
+
+    void DisplaySideBar(float width)
+    {
+
+    }
+
+    void DisplayMainContent(float width)
+    {
+
+    }
 }
