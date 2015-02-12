@@ -31,10 +31,10 @@ public class GameEditorWindow : EditorWindow
 
         gameEditor = GameEditorContainer.gameEditor;
 
-        quickbarUI = new QuickbarUI();
+        quickbarUI = new QuickbarUI(gameEditor);
         resourcesUI = new ResourcesUI(gameEditor);
-        prefabsUI = new PrefabsUI();
-        spritesUI = new SpritesUI();
+        prefabsUI = new PrefabsUI(gameEditor);
+        spritesUI = new SpritesUI(gameEditor.spriteManager, gameEditor.prefabManager);
 
         currentUI = resourcesUI;
     }

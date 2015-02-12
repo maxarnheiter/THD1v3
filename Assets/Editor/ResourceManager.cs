@@ -27,7 +27,6 @@ public class ResourceManager
     {
         var newObj = new GameObject("", typeof(InstanceManager));
         gameEditor.instanceManager = newObj.GetComponent<InstanceManager>();
-        LoadInstances(gameEditor.instanceManager);
     }
 
     public void CreateSpriteManager()
@@ -42,6 +41,7 @@ public class ResourceManager
         var newObj = new GameObject("", typeof(PrefabManager));
         gameEditor.prefabManager = newObj.GetComponent<PrefabManager>();
         LoadPrefabs(gameEditor.prefabManager);
+        EditorUtility.SetDirty(gameEditor.prefabManager);
     }
 
     public void ImportInstanceManager()
@@ -68,12 +68,6 @@ public class ResourceManager
         }
     }
 
-    public void LoadInstances(InstanceManager instanceManager)
-    {
-        //TODO
-    }
-
-
     public void LoadSprites(SpriteManager spriteManager)
     {
         var rawObjs = Resources.LoadAll("Sprites/");
@@ -89,7 +83,7 @@ public class ResourceManager
             Sprite sprite = obj as Sprite;
 
             if (sprite != null)
-                spriteManager.Add(sprite.name, AssetPreview.GetAssetPreview(sprite));
+                spriteManager.Add(sprite.name, sprite);
         }
 
         Debug.Log("Loaded " + spriteManager.Count + " sprites.");

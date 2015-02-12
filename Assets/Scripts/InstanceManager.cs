@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class InstanceManager : MonoBehaviour 
 {
     
-    Dictionary<int, Instance> instances;
+    public Dictionary<int, Instance> instances;
 
     public InstanceManager()
     {

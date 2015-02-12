@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class SpriteManager : MonoBehaviour
+public class SpriteManager : MonoBehaviour, ISerializationCallbackReceiver
 {
 
-    Dictionary<string, Texture2D> sprites;
+    [SerializeField] List<string> keys;
+    [SerializeField] List<Sprite> values;
+
+    public Dictionary<string, Sprite> sprites;
 
     public SpriteManager()
     {
-        sprites = new Dictionary<string, Texture2D>();
+        keys = new List<string>();
+        values = new List<Sprite>();
+        sprites = new Dictionary<string, Sprite>();
     }
 
     void Reset()
@@ -27,6 +32,25 @@ public class SpriteManager : MonoBehaviour
 
     }
 
+    public void OnBeforeSerialize()
+    {
+        keys.Clear();
+        values.Clear();
+
+        foreach (var kvp in sprites)
+        {
+            keys.Add(kvp.Key);
+            values.Add(kvp.Value);
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        sprites = new Dictionary<string, Sprite>();
+        for (int i = 0; i != Mathf.Min(keys.Count, values.Count); i++)
+            sprites.Add(keys[i], values[i]);
+    }
+
     public int Count
     {
         get
@@ -37,10 +61,10 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
-    public void Add(string spriteName, Texture2D texture)
+    public void Add(string spriteName, Sprite sprite)
     {
         if (!sprites.ContainsKey(spriteName))
-            sprites.Add(spriteName, texture);
+            sprites.Add(spriteName, sprite);
         else
             Debug.Log("Attempted to add sprite with duplicate name: " + spriteName);
     }

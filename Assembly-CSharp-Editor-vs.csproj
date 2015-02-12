@@ -57,6 +57,7 @@
      <Compile Include="Assets\Editor\ResourcesUI.cs" />
      <Compile Include="Assets\Editor\SceneInputHandler.cs" />
      <Compile Include="Assets\Editor\SceneRenderer.cs" />
+     <Compile Include="Assets\Editor\SpriteWizard.cs" />
      <Compile Include="Assets\Editor\SpritesUI.cs" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
