@@ -6,6 +6,7 @@ using System.Linq;
 public class GameEditorWindow : EditorWindow 
 {
 
+
     GameEditor gameEditor;
 
     EditorUI currentUI;
@@ -47,7 +48,8 @@ public class GameEditorWindow : EditorWindow
 
         SelectionBar();
 
-        currentUI.Display(width);
+        if(currentUI != null)
+            currentUI.Display(width);
       
     }
 

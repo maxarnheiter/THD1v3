@@ -64,12 +64,17 @@ class SpritesUI : EditorUI
 
             if(GUILayout.Button("Clear Selection", GUILayout.Width(width / 2)))
             {
-                //TODO
+                spriteSelection.Clear();
             }
 
             if(GUILayout.Button("Open Wizard", GUILayout.Width(width / 2)))
             {
-                //TODO
+                if (wizard == null)
+                {
+                    wizard = new SpriteWizard(spriteSelection, textureCache, prefabManager);
+                    wizard.Show();
+                }
+
             }
 
             EditorGUILayout.EndHorizontal();
